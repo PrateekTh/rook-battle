@@ -197,6 +197,11 @@ export class Game extends Scene
             this.UIHandler.finalText(this, "Turn Player unresponsive.\n Reloading in 5 Seconds", this.s_width/2, 100, 4000)
             setTimeout(reload, 5000)
         })
+
+        this.socket.on('roomFull', ()=>{
+            console.log('spectator')
+            this.UIHandler.showMessage(this, "The room is full.\n You are a spectator!", this.s_width/2, 100, 10000)
+        })
     }
 
     update(){

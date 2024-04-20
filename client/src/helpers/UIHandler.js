@@ -27,6 +27,6 @@ export default class UIHandler {
             text.setOrigin(0.5,0.5)
         }
             return text;
-          }
+        }
     }
 }

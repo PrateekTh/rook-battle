@@ -13,9 +13,15 @@ const TIMEOUT_DURATION = 30000; // 30 seconds in milliseconds
 let timerId = null;
 
 io.on('connection', (socket) => {
-    connectedSockets.push(socket.id);
-    console.log(`Socket with ID ${socket.id} connected.  Total Players = ${connectedSockets.length}`);
+    if ((connectedSockets.length) === roomsize){
+        io.to(socket.id).emit('roomFull')
+        console.log("Emitting full room")
+    } else {
+        connectedSockets.push(socket.id);
+        console.log(`Socket with ID ${socket.id} connected.  Total Players = ${connectedSockets.length}`);
+    }
     
+
     socket.on('noResponse', (socket_id)=>{
 
         console.log(socket_id + " has no response")
@@ -59,6 +65,7 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {   
         const disconnectedSocketId = Object.values(connectedSockets).find(id => id === socket.id);
         turn = 0;
+        io.to(connectedSockets[turn]).emit('turn')
         connectedSockets.splice(disconnectedSocketId, 1)
         console.log('A user disconnected');
     });
