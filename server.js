@@ -8,11 +8,12 @@ const io = require('socket.io')(http, {cors: {origin: "*"}});
 io.on('connection', (socket) => {
     console.log('A user connected');
 
-    socket.on('ValidMove', (x, y, box, socket_id)=>{
+    socket.on('ValidMove', (x, y, row, col, socket_id)=>{
+
 
         //check for win condition
-
-        io.emit('rookPosition', x,y)
+        console.log('ValidMove Bro ' + row + "," + col )
+        io.emit('rookPosition', row,col)
     })
 
     // Handle disconnection
