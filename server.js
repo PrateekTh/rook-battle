@@ -9,13 +9,22 @@ let roomsize = 2;
 
 let connectedSockets = []; // Object to store connected sockets
 
+const TIMEOUT_DURATION = 30000; // 30 seconds in milliseconds
+let timerId = null;
 
 io.on('connection', (socket) => {
     connectedSockets.push(socket.id);
     console.log(`Socket with ID ${socket.id} connected.  Total Players = ${connectedSockets.length}`);
     
-    socket.on('ValidMove', ( row, col, socket_id)=>{
-        console.log("someone clicked")
+    socket.on('noResponse', (socket_id)=>{
+
+        console.log(socket_id + " has no response")
+        io.emit('remove', socket_id)
+    })
+
+    socket.on('ValidMove', (row, col, socket_id)=>{
+        console.log('Received valid move from a client. Resetting timer.');
+        clearTimeout(timerId);
         //check for turn
         if(connectedSockets[turn]=== socket_id){
             
@@ -35,12 +44,20 @@ io.on('connection', (socket) => {
 
         io.to(connectedSockets[turn]).emit('turn')
         
+        timerId = setTimeout(() => {
+            console.log('Clients timed out after ', TIMEOUT_DURATION / 1000, 'seconds.');
+            // Handle timeout logic
+            io.emit('timeout'); // Emit "timeout" event to all connected clients
+
+            clearTimeout(timerId);
+            timerId = null;
+        }, TIMEOUT_DURATION);
+
     })
 
     // Handle disconnection
     socket.on('disconnect', () => {   
         const disconnectedSocketId = Object.values(connectedSockets).find(id => id === socket.id);
-
         turn = 0;
         connectedSockets.splice(disconnectedSocketId, 1)
         console.log('A user disconnected');

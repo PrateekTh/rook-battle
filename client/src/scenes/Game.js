@@ -2,7 +2,6 @@ import { Scene } from 'phaser';
 import io from 'socket.io-client'
 import UIHandler from '../helpers/UIHandler';
 
-
 export class Game extends Scene
 {
     constructor ()
@@ -18,7 +17,9 @@ export class Game extends Scene
     preload(){
         this.load.image('bg', 'assets/bg.png');
         this.load.image('rook', 'assets/rook.png')
-
+        this.load.image('player', 'assets/player.png')
+        this.load.image('target', 'assets/target.png')
+        
         const {width, height} = this.scale;
         this.s_width = width;
         this.s_height = height;
@@ -49,7 +50,6 @@ export class Game extends Scene
         }
     }
 
-
     updateAllTiles(scene){
       
         // Get all children, and filter for tiles (assuming tiles are instances of a specific class)
@@ -67,14 +67,14 @@ export class Game extends Scene
                 tile.cellstate = 1;
                 setTimeout(()=>{
                     tile.fillColor = color;
-                }, 1000 + time_diff)
+                }, 500 + time_diff)
                 time_diff+= t_step;
                 console.log("Horizontal: " + tile.name, tile.cellstate)
             }else if(tile.col === this.rook_Y && tile.row > this.rook_X){
                 tile.cellstate = 1;
                 setTimeout(()=>{
                     tile.fillColor = color;
-                }, 1000 + time_diff)
+                }, 500 + time_diff)
                 time_diff+= t_step;
 
                 console.log("Vertical: " + tile.name, tile.cellstate)
@@ -124,6 +124,7 @@ export class Game extends Scene
         });
     }
 
+
     create(){
         console.log("We begin");
         this.UIHandler = new UIHandler(this);
@@ -144,46 +145,62 @@ export class Game extends Scene
         
         let bg = this.add.sprite(this.s_width/2-25, this.s_height/2-25, 'bg')
         let rook = this.add.sprite(782,192,'rook')
+        this.player = this.add.sprite(this.s_width/2 , 900,'player')
+        this.target = this.add.sprite(192 , 780,'target')
 
         bg.setScale(2).setOrigin(0.5,0.5)
-        rook.setScale(0.5).setDepth(10)
+        rook.setScale(0.5).setDepth(5)
 
-        
+
+        //client-side sockets
 
         this.socket = io('http://localhost:3000');
-        
-        this.socket.on('rookPosition', (x,y)=>{
+        console.log(this.socket)
 
+        this.socket.on('connect', ()=>{
+            console.log('Connected to Server!')
+        }) 
+
+
+        this.socket.on('rookPosition', (x,y)=>{
             this.rook_X = x;
             this.rook_Y = y;
             let coords = this.calculateCoordinates(this.rook_X, this.rook_Y, 80)
             this.tweenSpriteTo(rook, coords[0], coords[1], 500)
             console.log(`coords from final socket: ${coords}, Rook position: ${this.rook_X}, ${this.rook_Y}`)
             this.updateAllTiles(this);
-            
         })
-
-        this.socket.on('connect', ()=>{
-           console.log('Connected to Server!')
-        })
-
+        
+        //display text to winner
         this.socket.on('win', ()=>{
-            this.UIHandler.finalText(this, "You Win!", this.s_width/2, this.s_height - this.s_height/10, 10000)
+            this.UIHandler.finalText(this, "You Win!", this.s_width/2, this.s_height - 50, 10000)
         })
 
+        //display game over text
         this.socket.on('gameover', ()=>{
             this.UIHandler.finalText(this, "Game Over", this.s_width/2, 200)
         })
 
+        //recieves message of turn from server
         this.socket.on('turn', ()=>{
             this.isMyTurn = true;
             this.UIHandler.showMessage(this, "Your Turn", this.s_width/2, 100, 4000)
-            //create timer
+        })
 
+        //reload function
+        function reload(){
+            window.location.reload();
+        }
+
+        //handles timeout on user's end
+        this.socket.on('timeout', ()=> {
+            this.UIHandler.finalText(this, "Turn Player unresponsive.\n Reloading in 5 Seconds", this.s_width/2, 100, 4000)
+            setTimeout(reload, 5000)
         })
     }
 
     update(){
+        this.player.rotation+=0.002;
 
     }
 
