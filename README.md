@@ -8,6 +8,8 @@ The teck stack used is:
 - Socket.IO (Multiplyer Support)
 - Express.JS (Backend)
 
+![rooks_move](https://github.com/PrateekTh/rook-battle/assets/57175545/d002a471-85ad-4902-b45a-9b9b3e2138e8)
+
 Here, I will go through all the various aspects of the project:
 
 ## Reproducing and Dependency setup
@@ -143,13 +145,21 @@ There are also several client functions, which enable the main game execution. T
 
 ## Results
 
-[insert video clip]
+⇓ Here is a clip of two players, playing the Rook's Move
 
-Here is a clip of two players, playing the Rook's Move .
 
-[insert video clip]
+https://github.com/PrateekTh/rook-battle/assets/57175545/2e0d6e09-c2e9-4a9c-a7b5-42afb9ca2063
 
-Here is a clip of three players.
+
+⇓ Here is a clip of three players
+
+
+https://github.com/PrateekTh/rook-battle/assets/57175545/aabe2164-a8f2-4b15-b5af-b09c93b6346e
+
+
+⇓ Spectator in a 2 player room
+![spectate](https://github.com/PrateekTh/rook-battle/assets/57175545/67d022a5-431a-4cec-aa29-1f590724d41f)
+
 
 This project was quite fun to make!
 I must admit, I hadn't used Phaser or Sockets before this, but by now all this game making has given me a quite a bit more control on these technologies, and I think I can apply more and more Game Design concepts, with increasing time. I already have a lot of features in mind, but given the time frame, I think this would suffice.
