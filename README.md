@@ -53,8 +53,7 @@ The server handles and manages all incoming sockets and their requests. The key 
 
 ### Client:
 
-Each client has multiple of Socket Handling features as well as the Phaser Implementations. The key Socket based events include
-(emitted by the server):
+Each client has multitude of Socket Handling features as well as the Phaser Implementations. The key Socket based events include (emitted by the server):
 
 - `setRookPosition`
 - `connect`
@@ -84,33 +83,35 @@ There are also several client functions, which enable the main game execution. T
    - Additional players, greater than the room size become spectators.
    - This implementation uses a client-server architecture, built via `Socket.io`.
 
-   ```
+```
    Implementation:
 
    The server contains a connectedSockets array, which maintains a list of connected sockets.
 
    Whenever it recieves a valid move from a socket, it checks for the turn, and emits it to all users.
 
-   On the client end, various socket handling methods have been setup, and they handle sending valid moves, as well as recieveing server messages.
+   On the client end, various socket handling methods have been setup, and they handle sending valid
+   moves as well as receiving server messages.
 
-   ```
+```
 
 2. **Timer**
-
    - Each player has 30 seconds to make their move.
    - The UI for the timer is a horizontal bar, which is on both the player's screen for the first turn, and then only on the player with the current turn, after that.
    - If a player does not make a move within the allocated time, the game is over, and a few moments after that the client is reloaded.
 
-   ```
+```
    Implementation:
 
-   The server maintains the timer mainly, via a timerID object, which is initialised on the first move made, by a player.
+   The server maintains the timer mainly, via a timerID object, which is initialised on the first move made,
+   by a player.
 
-   Whenever the server recieves a valid move from a socket, it resets the time out. In case the time reaches zero, it emits a suitable message to all clients, and restarts the game (could be set to disconnect as well)
+   Whenever the server recieves a valid move from a socket, it resets the time out. In case the time reaches
+   zero, it emits a suitable message to all clients, and restarts the game (could be set to disconnect as well)
 
    On the client end, the timer UI is handled and is shown as a horizontal bar.
 
-   ```
+```
 
 3. **Spectators and Multiple Players**
 
@@ -119,18 +120,21 @@ There are also several client functions, which enable the main game execution. T
    - The `roomsize` variable can be adjusted on the server, to allow gameplay between the desired number of players.
    - Whenever a player enters after the room is full, they are sent a message that they are a spectator, and they cannot make moves, but see the game that is being played by the two main players.
 
-   ```
+```
    Implementation:
 
-   The server contains the room size variable, which adjusts the turn reset loop accordingly, to allow for turns of all players, irrespective of number. Also, the handling of the connectedSockets array, and modifications on the entry/exit of each socket has been written specifically to allow for this feature.
+   The server contains the room size variable, which adjusts the turn reset loop accordingly, to allow for
+   turns of all players, irrespective of number. Also, the handling of the connectedSockets array, and
+   modifications on the entry/exit of each socket has been written specifically to allow for this feature.
 
-   On the client end, the UI is the same, and they need to wait for their turn (It may be modified to inform whose turn it is).
+   On the client end, the UI is the same, and the clients need to wait for their turn (It may be modified
+   to inform whose turn it is).
 
-   ```
+```
 
 4. **Animations and Visuals**
 
-   - There are a few animations added in this project, though there is always room for more animation:
+   - There are a quite some animations added in this project, though there is always room for more animation:
 
      - Valid Tile Animation (custom)
      - Rook Movement Animation (custom Tween function)
