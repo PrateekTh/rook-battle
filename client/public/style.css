@@ -1,4 +1,4 @@
-
+/* Import Custom Fonts & Load them*/
 @font-face{
   font-family: 'KodeMono';
   src: url('/fonts/KodeMono-SemiBold.ttf'),
@@ -24,9 +24,6 @@
     visibility: hidden;
     left: -10000;
 }
-
-
-
 
 body {
     margin: 0;

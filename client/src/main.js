@@ -1,12 +1,10 @@
 import { Game } from './scenes/Game';
 
-
-//  Find out more information about the Game Config at:
-//  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
+//  Documentation: https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config = {
     type: Phaser.AUTO,
-    width: 1024,
-    height: 1024,
+    width: 1024, // Canvas width
+    height: 1024,// Canvas height
     parent: 'game-container',
     backgroundColor: '#010101',
     scale: {

@@ -1,20 +1,14 @@
 export default class UIHandler {
+    
     constructor(scene){
-        this.buildGameText = () => {
-            //scene.setUp = scene.add.text(200, 200, "Start Game").setFontSize(40).setFontFamily("Trebuchet MS");
-        }
 
-        this.buildUI = () => {
-            this.buildGameText();
-        }
-
-
+        //Define Temporary Message Renderer
         this.showMessage = (scene, message, x, y, duration = 2000) => {
             // Create the text object
             const text = scene.add.text(x, y, message, { font:'40px KodeMono', fill: '#ffffff' });  // Adjust properties as needed
             text.setOrigin(0.5,0.5)
             text.setAlign('center')
-            // Fade out the text after the specified duration
+            // Move and Fade out the text during the specified duration
             scene.tweens.add({
               y: y-100,
               targets: text,
@@ -23,12 +17,14 @@ export default class UIHandler {
               duration: duration,
               onComplete: () => text.destroy() // Destroy the text object after fade out
             });
+        }
         
+        //Define Permanent Text Renderer
         this.finalText = (scene, message, x, y) =>{
-            const text = scene.add.text(x, y, message, { font: '40px MajorMono', fill: '#ffffff' });  // Adjust properties as needed
+            //Create Text Object
+            const text = scene.add.text(x, y, message, { font: '40px MajorMono', fill: '#82E0AA' });  // Adjust properties as needed
             text.setOrigin(0.5,0.5)
             text.setAlign('center')
-        }
             return text;
         }
     }
