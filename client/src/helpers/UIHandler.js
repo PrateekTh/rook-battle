@@ -8,10 +8,12 @@ export default class UIHandler {
             this.buildGameText();
         }
 
+
         this.showMessage = (scene, message, x, y, duration = 2000) => {
             // Create the text object
-            const text = scene.add.text(x, y, message, { font: 'bold 40px Arial', fill: '#ffffff' });  // Adjust properties as needed
+            const text = scene.add.text(x, y, message, { font:'40px KodeMono', fill: '#ffffff' });  // Adjust properties as needed
             text.setOrigin(0.5,0.5)
+            text.setAlign('center')
             // Fade out the text after the specified duration
             scene.tweens.add({
               y: y-100,
@@ -23,8 +25,9 @@ export default class UIHandler {
             });
         
         this.finalText = (scene, message, x, y) =>{
-            const text = scene.add.text(x, y, message, { font: '40px Courier New', fill: '#ffffff' });  // Adjust properties as needed
+            const text = scene.add.text(x, y, message, { font: '40px MajorMono', fill: '#ffffff' });  // Adjust properties as needed
             text.setOrigin(0.5,0.5)
+            text.setAlign('center')
         }
             return text;
         }

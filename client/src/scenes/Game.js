@@ -147,10 +147,12 @@ export class Game extends Scene
         let rook = this.add.sprite(782,192,'rook')
         this.player = this.add.sprite(this.s_width/2 , 900,'player')
         this.target = this.add.sprite(192 , 780,'target')
+        this.timerBar = this.add.rectangle(0,1000,0,20,0xFFFFFF);
+        this.barStep = this.s_width/(30*60*2)
 
         bg.setScale(2).setOrigin(0.5,0.5)
         rook.setScale(0.5).setDepth(5)
-
+        this.timerBar.setOrigin(0,0)
 
         //client-side sockets
 
@@ -178,13 +180,16 @@ export class Game extends Scene
 
         //display game over text
         this.socket.on('gameover', ()=>{
-            this.UIHandler.finalText(this, "Game Over", this.s_width/2, 200)
+            this.UIHandler.finalText(this, "GAME OVER!", this.s_width/2, 100)
+            this.UIHandler.showMessage(this, "The game will restart.", this.s_width/2, 300, 4000)
+            setTimeout(reload, 8000)
         })
 
         //recieves message of turn from server
         this.socket.on('turn', ()=>{
             this.isMyTurn = true;
             this.UIHandler.showMessage(this, "Your Turn", this.s_width/2, 100, 4000)
+            this.timerBar = this.add.rectangle(0,1000,0,20,0xFFFFFF);
         })
 
         //reload function
@@ -206,6 +211,9 @@ export class Game extends Scene
 
     update(){
         this.player.rotation+=0.002;
+        
+        // Update the timer bar width
+        this.timerBar.width += this.barStep;
 
     }
 

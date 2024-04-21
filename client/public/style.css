@@ -1,3 +1,33 @@
+
+@font-face{
+  font-family: 'KodeMono';
+  src: url('/fonts/KodeMono-SemiBold.ttf'),
+}
+
+.font-load-1 {
+    font-family: "KodeMono", sans-serif;
+    font-style: normal;  
+    position: absolute;
+    visibility: hidden;
+    left: -10000;
+}
+
+@font-face{
+  font-family: 'MajorMono';
+  src: url('/fonts/MajorMonoDisplay-Regular.ttf'),
+}
+
+.font-load-2 {
+    font-family: "MajorMono", sans-serif;
+    font-style: normal;
+    position: absolute;
+    visibility: hidden;
+    left: -10000;
+}
+
+
+
+
 body {
     margin: 0;
     padding: 0;
