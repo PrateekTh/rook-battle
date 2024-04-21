@@ -17,18 +17,11 @@ io.on('connection', (socket) => {
 
     if ((connectedSockets.length) === roomsize){
         io.to(socket.id).emit('roomFull')
-        console.log("Emitting full room")
+        console.log("Emitting to full room")
     } else {
         connectedSockets.push(socket.id);
         console.log(`Socket with ID ${socket.id} connected.  Total Players = ${connectedSockets.length}`);
     }
-    
-
-    socket.on('noResponse', (socket_id)=>{
-
-        console.log(socket_id + " has no response")
-        io.emit('remove', socket_id)
-    })
 
     //On recieving a valid move from a client
     socket.on('ValidMove', (row, col, socket_id)=>{
