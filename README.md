@@ -177,3 +177,13 @@ Still, my self-motivated tendencies won't let me rest, so I would like to enunmm
   - Changing the Valid moves for the chess piece, or even a Custom Mode, where we give players the support to write custom rules, and then share them with their friends as a challenge. This open a lot of avenues on how interesting the rules could be, but I believe nothing can be wilder than already existing chess Knights.
   - Truly endless possibilities, and for further discussion the target audience and use cases become necessary.
 - Utilisation of more features of the Phaser library / game engine.
+
+# After the project
+
+I decided not to tinker with this project, since I was given a limited time frame to execute it, which might as well be a judging criteria. As for Phaser, I will be trying to create a (much) simpler version of [Jummbox](https://jummb.us/) next. This will have me work in-depth with audio in Phaser, and master manipulating game-objects and properties.
+
+Also, do check out my other recent repositories, related to game making!
+- [3D Models](https://github.com/PrateekTh/3d-models) - Creating optimised low-poly models (with rigging and texturing) in blender.
+- [Shaders for Unity](https://github.com/PrateekTh/shader-showcase) - Trying to visually create (and recreate) art styles in Unity, using Shader Graph and HLSL.
+
+
