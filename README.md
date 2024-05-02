@@ -1,14 +1,14 @@
 # Rook's Move
 
-This project aims to create a simple multiplayer Chess game, as specified in the Game Assignment provided by Cuemath, at [this link](https://cuemath.notion.site/Game-Assignment-Rook-s-Move-ef5d792e3e114317ad6b8805d4fa4328?pvs=4).
+This project contains a simple multiplayer Chess game, written in JS and made for the web.
 
 The teck stack used is:
 
 - Phaser 3 (JS Web Game Engine)
-- Socket.IO (Multiplyer Support)
+- Socket.IO (Multiplayer Functionality)
 - Express.JS (Backend)
 
-![rooks_move](https://github.com/PrateekTh/rook-battle/assets/57175545/d002a471-85ad-4902-b45a-9b9b3e2138e8)
+<img src="https://github.com/PrateekTh/rook-battle/assets/57175545/d002a471-85ad-4902-b45a-9b9b3e2138e8" height = 400>
 
 Here, I will go through all the various aspects of the project:
 
@@ -166,9 +166,9 @@ https://github.com/PrateekTh/rook-battle/assets/57175545/aabe2164-a8f2-4b15-b5af
 
 
 This project was quite fun to make!
-I must admit, I hadn't used Phaser or Sockets before this, but by now all this game making has given me a quite a bit more control on these technologies, and I think I can apply more and more Game Design concepts, with increasing time. I already have a lot of features in mind, but given the time frame, I think this would suffice.
+I must admit, I hadn't used Phaser or Sockets before this, but by now all this game making has given me a quite a bit of control on these technologies, and I think I can apply more and more Game Design concepts, with increasing time. I already have a lot of features in mind for this project itself, but I will move on to more complex projects.
 
-Still, my self-motivated tendencies won't let me rest, so I would like to enunmmerate improvements, that can be added in the current build of Rook's Move:
+Still, my self-motivated tendencies won't let me rest, so I would like to enunmmerate improvements, that can be added in the current build of Rook's Move (that I'll add if I come around to it):
 
 - Better Animations
 - Modular Code, with especially socketHandling seperated to a particular Handler (Similar to UI)
@@ -179,8 +179,7 @@ Still, my self-motivated tendencies won't let me rest, so I would like to enunmm
 - Utilisation of more features of the Phaser library / game engine.
 
 # After the project
-
-I decided not to tinker with this project, since I was given a limited time frame to execute it, which might as well be a judging criteria. As for Phaser, I will be trying to create a (much) simpler version of [Jummbox](https://jummb.us/) next. This will have me work in-depth with audio in Phaser, and master manipulating game-objects and properties.
+For Phaser, I will be trying to create a (much) simpler version of [Jummbox](https://jummb.us/) next. I also want to explore the 3D aspect of it, so I'll try and build assets for that as well. This will have me work in-depth with audio in Phaser, and master manipulating game-objects and properties.
 
 Also, do check out my other recent repositories, related to game making!
 - [3D Models](https://github.com/PrateekTh/3d-models) - Creating optimised low-poly models (with rigging and texturing) in blender.
